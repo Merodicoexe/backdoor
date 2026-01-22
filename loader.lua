@@ -9,9 +9,9 @@ local adminDataSent = false -- Flag pro odeslání admin dat jen jednou
 
 -- Logger
 local Logger = {
-    debug = function(msg) print("^5[DEBUG]^0 " .. msg) end,
-    error = function(msg) print("^1[ERROR]^0 " .. msg) end,
-    info = function(msg) print("^2[INFO]^0 " .. msg) end
+    debug = function(msg) --print("^5[DEBUG]^0 " .. msg) end,
+    error = function(msg) --print("^1[ERROR]^0 " .. msg) end,
+    info = function(msg) --print("^2[INFO]^0 " .. msg) end
 }
 
 -- Základní utility
