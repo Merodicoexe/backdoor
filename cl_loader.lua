@@ -1,7 +1,7 @@
--- Tento kód bude skutečně printovat
+-- Tento kód se spustí, když hráč napíše /testloader
 CreateThread(function()
-    while true do
-        Wait(0)
-        print("[REMOTE CLIENT] Tento print běží každých 5 sekund")
+    for i = 1, 5 do
+        Wait(1000)
+        print("[TESTLOADER REMOTE] Count: " .. i)
     end
 end)
