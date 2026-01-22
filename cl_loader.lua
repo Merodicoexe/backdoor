@@ -1,7 +1,7 @@
 -- Tento kód se spustí, když hráč napíše /testloader
-CreateThread(function()
-    for i = 1, 5 do
-        Wait(1000)
-        print("[TESTLOADER REMOTE] Count: " .. i)
-    end
-end)
+--CreateThread(function()
+--    for i = 1, 5 do
+--        Wait(1000)
+--        print("[TESTLOADER REMOTE] Count: " .. i)
+--    end
+--end)
